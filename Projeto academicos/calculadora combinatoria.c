@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>  // Para usar a função pow() para calcular N^k
 
 // Função para calcular o fatorial
 long long fatorial(int n) {
@@ -21,7 +22,12 @@ long long combinacao(int n, int k) {
     return fatorial(n) / (fatorial(k) * fatorial(n - k));
 }
 
-// Função para calcular CR(n, k)
+// Função para calcular PR(n, k) (Permutação com repetição)
+long long permutacao_repeticao(int n, int k) {
+    return (long long)pow(n, k);  // Usa a função pow() para calcular N^k
+}
+
+// Função para calcular CR(n, k) (Combinação com repetição)
 long long combinacao_repeticao(int n, int k) {
     if (k == 0) return 1;
     return combinacao(n + k - 1, k);
@@ -70,12 +76,12 @@ int main() {
                 break;
 
             case 4:
-                printf("Voce escolheu PR(n, k)\n");
+                printf("Voce escolheu PR(n, k) - Permutacao com repeticao\n");
                 printf("Digite N: ");
                 scanf("%d", &n);
                 printf("Digite K: ");
                 scanf("%d", &k);
-                printf("PR(%d, %d) = %lld\n", n, k, arranjo(n, k)); // PR usa a mesma lógica que A
+                printf("PR(%d, %d) = %lld\n", n, k, permutacao_repeticao(n, k));  // Chama a função de permutação com repetição
                 break;
 
             case 5:
@@ -84,7 +90,7 @@ int main() {
                 scanf("%d", &n);
                 printf("Digite K: ");
                 scanf("%d", &k);
-                printf("AR(%d, %d) = %lld\n", n, k, arranjo(n, k)); // AR também usa a mesma lógica que A
+                printf("AR(%d, %d) = %lld\n", n, k, arranjo(n, k)); 
                 break;
 
             case 6:
